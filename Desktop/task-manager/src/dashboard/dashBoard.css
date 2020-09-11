@@ -1,0 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700&display=swap');
+.dashboard{
+    background-color: rgb(75,191,107);
+    position: absolute;
+    top:0;
+    bottom: 0;
+    width: 100%;
+}

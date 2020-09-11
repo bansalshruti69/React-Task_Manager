@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700&display=swap');
+
+.userboard{
+    font-family: 'Roboto Slab', serif;
+    background-color: rgb(75,191,107);
+    position: absolute;
+    top:0;
+    bottom: 0;
+    width: 100%;
+}
+
+.card{
+    margin:10px 10px;
+    box-sizing: border-box;
+    border-radius:5px;
+    background-color: rgba(255,255,255);
+    text-align: center;
+    width: 260px;
+    min-height: 300px;
+    padding:20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.user-add-card-add-icon{
+    box-sizing: border-box;
+    padding: 60px 50px;
+    width: 100%;
+    opacity: 0.5;
+}
+
+.user-add-card-add-icon:hover{
+    opacity: 1;
+    cursor: pointer;
+}
+
+form{
+    text-align: left;
+}
+
+label,
+input{
+    margin-bottom: 5px;
+    width:100%;
+    display: block;
+}
+
+input{
+    height:20px;
+}
+
+button{
+    margin:5px;
+    background-color: rgb(75,191,107);
+    color:white;
+    border: none;
+    padding:10px;
+    border-radius: 3px;
+}
+
+button:hover{
+    cursor: pointer;
+}
