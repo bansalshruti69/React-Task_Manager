@@ -94,3 +94,11 @@ button:hover{
     overflow:auto;
     bottom: 0;
 }
+
+.hide{
+    display: none;
+}
+
+.show{
+    display: block;
+}
