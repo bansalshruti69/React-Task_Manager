@@ -1,15 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700&display=swap');
 
 .header{
+    position: fixed;
     color:white;
     padding:10px;
     box-sizing: border-box;
     font-family: 'Roboto Slab', serif;
+    height: 50px;
     text-align: center;
 }
 
 .header-pagelinks{
-    float: left;
     font-size: 24px;
     margin-right: 10px;
     font-weight:400;
@@ -26,6 +27,8 @@
 }
 
 .header-title{
+    position: relative;
+    left:100%;
     font-size: 30px;
     font-weight:700;
 }

@@ -10,14 +10,14 @@
 }
 
 .card{
-    margin:10px 10px;
+    margin:10px 17px;
     box-sizing: border-box;
     border-radius:5px;
     background-color: rgba(255,255,255);
     text-align: center;
     width: 260px;
-    min-height: 300px;
     padding:20px;
+    height: auto;
     box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
 
@@ -59,4 +59,38 @@ button{
 
 button:hover{
     cursor: pointer;
+}
+
+.user-card-group{
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+}
+
+.user-card-display-image{
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius:50%;
+    margin:0 auto 20px auto;
+}
+
+.user-card-display-name{
+    font-size:30px;
+    font-weight:400;
+}
+
+.user-card-display-profile,
+.user-card-display-location{
+    font-size:18px;
+    font-weight:500;
+    color:gray;
+}
+
+.user-card-group-container{
+    position: absolute;
+    top:60px;
+    left:0;
+    overflow:auto;
+    bottom: 0;
 }
