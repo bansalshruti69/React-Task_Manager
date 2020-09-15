@@ -1,8 +1,197 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700&display=swap');
 .dashboard{
+    font-family: 'Roboto Slab', serif;
     background-color: rgb(75,191,107);
     position: absolute;
     top:0;
     bottom: 0;
     width: 100%;
 }
+
+.dashboard-body{
+    position: relative;
+    top:60px;
+}
+
+.account-management-message{
+    min-height: 50px;
+    font-size: 14px;
+    line-height: 20px;
+    background-color: white;
+    text-align: center;
+    box-sizing: border-box;
+    padding:10px 0;
+}
+
+.learn-more{
+    margin-left: 72px;
+    background-color: #5aac44;
+    color:white;
+    padding: 6px 24px;
+    border:none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.learn-more:hover{
+    background-color: #377d24;
+}
+
+.account-management-cancel{
+    float: right;
+    margin-right: 10px;
+}
+
+.account-management-cancel:hover{
+    cursor: pointer;
+}
+
+.card-list{
+    vertical-align: top;
+    padding: 5px;
+    margin: 5px;
+    background-color: #ebecf0;
+    border-radius: 3px;
+    width: 272px;
+    box-sizing: border-box;
+    display: inline-block;
+    max-height: 100%;
+}
+
+.card-list-title{
+    margin-bottom: 10px;
+}
+
+.inline-block{
+    display: inline-block;
+}
+
+.add-card-list{
+    display: inline-block;
+    padding:10px 10px;
+    color: white;
+    background-color: rgba(255,255,255, 0.3);
+}
+
+.add-card-list:hover{
+    cursor: pointer;
+    background-color: rgba(255,255,255, 0.5);
+}
+
+.add-card-list-form input{
+    height: 30px;
+    margin: 5px;
+    width: 252px;
+    box-sizing: border-box;
+}
+
+.hide{
+    display: none;
+}
+
+.show{
+    display: block;
+}
+
+.delete-cardList-icon{
+    margin-top: 3px;
+    float:right;
+}
+
+.delete-cardList-icon:hover{
+    cursor: pointer;
+}
+
+.cardList-title-name{
+    font-size:24px;
+}
+
+.add-card-display{
+    margin:5px;
+    padding:5px;
+    background-color:lightgray;
+    border-radius: 5px;
+    width: 252px;
+    box-sizing: border-box;
+    opacity: 0.5;
+}
+
+.card-display{
+    overflow: auto;
+    min-height: 20px;
+    cursor: pointer;
+    font-weight:400;
+    margin:10px 5px;
+    margin-top:0; 
+    background-color: white;
+    padding:10px 10px;
+    border-radius: 3px;
+    border-bottom:1px solid gray;
+}
+
+.add-card-display:hover{
+    opacity: 1;
+    cursor: pointer;
+}
+
+.card-form{
+    background-color:white;
+    opacity: 1;
+}
+
+.card-form input{
+    height: 25px;
+    width: 230px;
+}
+
+.card-text{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width:90%;
+}
+
+.card-text:hover {
+    overflow:visible;
+    white-space: normal;
+}
+
+.card-due-date{
+    padding-top: 10px;
+    font-size:12px;
+    color: rgba(0,0,0, 0.5);
+}
+
+.card-list-group{
+    overflow:auto;
+    white-space: nowrap;
+}
+
+.card-group{
+    max-height: 820px;
+    overflow: auto;
+}
+
+.card-button{
+    display: inline-block;
+}
+
+.card-button img{
+    opacity: 0.5;
+}
+
+.card-button img:hover{
+    opacity: 1;
+}
+ 
+.card-button img:last-child{
+    margin-top: 5px;
+    display: block;
+}
+
+.card-content{
+    vertical-align: top;
+    width: 210px;
+    display: inline-block;
+}
+

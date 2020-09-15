@@ -30,7 +30,7 @@ function UserCardGroup(){
     }
 
     return(
-        <div class="user-card-group-container">
+        <div className="user-card-group-container">
             <div className="user-card-group">
                 {users.map(function userMap(x) {
                     return (<UserCard key ={x.id} user={x} handleDelete={deleteUser} handleEdit={editUser}/>);
