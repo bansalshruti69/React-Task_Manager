@@ -1,20 +1,20 @@
 import React from 'react';
 import "./dashBoard.css";
 
-function AddCardListForm(props){
+const AddCardListForm = ({hideForm, addCardList, ...props})=>{
     const [cardListTitle,setCardListTitle] = React.useState("");
     const [cardListId,setCardListId] = React.useState(JSON.parse(localStorage.cardListId) ||0);
 
-    function handleChange(event){
+    const handleChange = React.useCallback((event)=>{
         setCardListTitle(event.target.value);
-    }
+    },[])
 
-    function handleCancel(){
+    const handleCancel = React.useCallback(()=>{
         setCardListTitle("");
-        props.hideForm();
-    }
+        hideForm();
+    },[hideForm]);
 
-    function handleSave(){
+    const handleSave = React.useCallback(()=>{
         const tempObj ={};
         const val = cardListId;
         tempObj.id = val;
@@ -23,9 +23,9 @@ function AddCardListForm(props){
         localStorage.cardListId = JSON.stringify(val+1);
         tempObj.cardListTitle = cardListTitle;
         tempObj.cards = [];
-        props.addCardList(tempObj);
+        addCardList(tempObj);
         handleCancel();
-    }
+    },[addCardList,cardListId,cardListTitle,handleCancel]);
 
     return (
         <div className={"add-card-list-form card-list "+props.className}>

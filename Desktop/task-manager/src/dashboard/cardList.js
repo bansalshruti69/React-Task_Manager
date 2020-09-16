@@ -1,12 +1,15 @@
 import React from 'react';
 import "./dashBoard.css";
-import CardGroup from "./cardGroup.js";
+import CardGroup from "./CardGroup.js";
 import CancelIcon from "./cancel-icon.png";
 
-function CardList(props){
-    function handleDelete(){
+const CardList = (props)=>{
+    const handleDelete = React.useCallback(()=>{
+        const result = window.confirm("Do you want to delete this User?");
+        if(!result)
+        return;
         props.deleteCardList(props.cardList.id);
-    }
+    },[props]);
 
     return (
         <div className="card-list">

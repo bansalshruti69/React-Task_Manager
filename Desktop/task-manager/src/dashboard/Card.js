@@ -2,21 +2,24 @@ import React from 'react';
 import "./dashBoard.css";
 import CancelIcon from "./cancel-icon.png";
 import EditIcon from "./edit-icon.png";
-import CardForm from './cardForm';
+import CardForm from './CardForm';
 
-function Card(props){
+const Card = ({props})=>{
     const [isForm,setIsForm] = React.useState(false);
-    function handleCancel(){
+    const handleCancel = React.useCallback(()=>{
+        const result = window.confirm("Do you want to delete this card?");
+        if(!result)
+        return;
         props.deleteCard(props.cardList.id,props.card.id);
-    }
+    },[props]);
 
-    function handleEdit(){
+    const handleEdit = React.useCallback(()=>{
         setIsForm(true);
-    }
+    },[]);
 
-    function hideForm(){
+    const hideForm = React.useCallback(()=>{
         setIsForm(false);
-    }
+    },[]);
 
     return(
         <>

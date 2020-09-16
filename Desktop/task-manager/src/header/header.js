@@ -1,10 +1,11 @@
 import React from 'react';
 import './header.css';
 
-function Header({currState, handleClick}){
-    function pageHandleClick(event){
+const Header = ({currState, handleClick})=>{
+   // console.log("header",1);
+    const pageHandleClick = React.useCallback((event)=>{
         handleClick(event.target.textContent.toLowerCase());
-    }
+    },[handleClick]);
     return (
         <div className="header">
             <span name="dashboard" onClick={pageHandleClick} className={"header-pagelinks" + (currState==='dashboard'?" header-onpage":"")}>Dashboard</span>

@@ -1,22 +1,25 @@
 import React from 'react';
 import "./userBoard.css";
-import UserCardDisplay from "./userCardDisplay.js";
-import UserForm from "./userForm.js";
+import UserCardDisplay from "./UserCardDisplay.js";
+import UserForm from "./UserForm.js";
 
-function UserCard(props){
+const UserCard = React.memo((props)=>{
+    //console.log("USerCard",props.user);
     const [isForm,setIsForm] = React.useState(false);
-    function showForm(){
+    const showForm = React.useCallback(()=>{
         setIsForm(true);
-    }
+    },[]);
 
-    function hideForm(){
+    const hideForm = React.useCallback(()=>{
         setIsForm(false);
-    }
+    },[]);
+    
     return(
         <div className="card">
             <UserCardDisplay showUserForm={showForm} className={(isForm? "hide": "show")} {...props} />
             <UserForm showUserCard={hideForm} className={(isForm? "show":"hide")} {...props}/>
         </div>
     )
-}
+});
+
 export default UserCard;

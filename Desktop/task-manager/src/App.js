@@ -1,15 +1,16 @@
 import React from 'react';
 import './App.css';
-import UserBoard from './userboard/userBoard.js';
-import DashBoard from './dashboard/dashBoard.js';
+import UserBoard from './userboard/UserBoard.js';
+import DashBoard from './dashboard/DashBoard.js';
 
-function App() {
+const App = ()=>{
   const [page,setPage] = React.useState('userboard');
-  function pageHandleClick(val){
+  const pageHandleClick = React.useCallback((val)=>{
     setPage(val);
-  }
-  const component =  (page==='userboard') ? <UserBoard currState={page} handleClick={pageHandleClick}/> : <DashBoard currState={page} handleClick={pageHandleClick}/>;
-  return component;
+  },[])
+  const dashBoardComp = <DashBoard currState={page} handleClick={pageHandleClick}/>
+  const userBoardcomp = <UserBoard currState={page} handleClick={pageHandleClick}/>
+  return  (page==='userboard') ? userBoardcomp: dashBoardComp;
 }
 
 export default App;

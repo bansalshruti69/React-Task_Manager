@@ -23,6 +23,18 @@
     padding:10px 0;
 }
 
+.account-management-message-hidden{
+    font-size:14px;
+    padding-right: 10px;
+    text-align: right;
+    height: 20px;
+    background-color: white;
+}
+
+#account-management-message-hidden-cancel-icon:hover{
+    cursor: pointer;
+}
+
 .learn-more{
     margin-left: 72px;
     background-color: #5aac44;
@@ -38,6 +50,7 @@
 }
 
 .account-management-cancel{
+    vertical-align: top;
     float: right;
     margin-right: 10px;
 }

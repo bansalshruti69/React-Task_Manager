@@ -1,10 +1,10 @@
 import React from 'react';
-import Header from '../header/header.js';
-import AccountManagementMessage from "./accountManagementMessage";
+import Header from '../header/Header.js';
+import AccountManagementMessage from "./AccountManagementMessage.js";
 import "./dashBoard.css";
-import CardListGroup from "./cardListGroup";
+import CardListGroup from "./CardListGroup";
 
-function  DashBoard(props){
+const DashBoard = (props)=>{
     return (
         <div className="dashboard">
             <Header {...props}/>

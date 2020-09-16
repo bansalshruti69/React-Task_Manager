@@ -1,9 +1,9 @@
 import React from 'react';
-import Header from '../header/header.js';
+import Header from '../header/Header.js';
 import "./userBoard.css";
-import UserCardGroup from "./userCardGroup.js"
+import UserCardGroup from "./UserCardGroup.js"
 
-function  UserBoard(props){
+const UserBoard = (props) => {
     return (
       <div className="userboard">
           <Header {...props}/>

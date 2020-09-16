@@ -1,15 +1,16 @@
 import React from 'react';
 import "./dashBoard.css";
-import AddCardListForm from "./addCardListForm.js"
+import AddCardListForm from "./AddCardListForm.js"
 
-function AddCardList(props){
+const AddCardList = (props)=>{
     const [isForm,setIsForm] = React.useState(false);
-    function showForm(){
+    const showForm = React.useCallback(()=>{
         setIsForm(true);
-    }
-    function hideForm(){
+    },[]);
+    
+    const hideForm = React.useCallback(()=>{
         setIsForm(false);
-    }
+    },[]);
 
     return (
         <div className="inline-block">

@@ -1,8 +1,8 @@
 import React from 'react';
 import "./dashBoard.css";
-import CardForm from "./cardForm.js";
+import CardForm from "./CardForm.js";
 
-function AddCard(props){
+const AddCard = React.memo((props)=>{
     const [isForm,setIsForm] = React.useState(false); 
     function showForm(){
         setIsForm(true);
@@ -18,6 +18,6 @@ function AddCard(props){
             <CardForm hideForm={hideForm} className={(isForm?"show":"hide")} {...props}/>
         </div>
     );
-}
+})
 
 export default AddCard;

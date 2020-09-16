@@ -1,17 +1,17 @@
 import React from 'react';
 import "./userBoard.css";
 
-function UserForm(props){
+const UserForm = React.memo((props)=>{
     const obj = props.user? {...props.user}: {id:null, name: '', profile: '', location: '', image:''};
     const [formUser, setFormUser] = React.useState(obj);
     const [userId,setUserId] = React.useState(JSON.parse(localStorage.id) ||  0);
 
-    function handleCancel(){
+    const handleCancel = React.useCallback(()=>{
         props.showUserCard();
         setFormUser(obj);
-    }
+    },[props,obj]);
 
-    function handleSubmit(event){
+    const handleSubmit = React.useCallback((event)=>{
         event.preventDefault();
         const val = userId;
         const tempObj = {
@@ -28,11 +28,11 @@ function UserForm(props){
             props.handleEdit(formUser);
             props.showUserCard();
         }
-    }
+    },[props,handleCancel,formUser,userId]);
 
-    function handleChange(event){
+    const handleChange = React.useCallback((event)=>{
         setFormUser({...formUser, [event.target.name]:event.target.value});
-    }
+    },[formUser]);
 
     return(
         <form onSubmit={handleSubmit} className={props.className}>
@@ -44,6 +44,6 @@ function UserForm(props){
             <button type="button" onClick={handleCancel}>Cancel</button>
         </form>
     )
-}
+})
 
 export default UserForm;
