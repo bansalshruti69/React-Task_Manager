@@ -1,7 +1,7 @@
 import React from 'react';
 import "./dashBoard.css";
 
-const AddCardListForm = ({hideForm, addCardList, ...props})=>{
+const AddCardListForm = (props)=>{
     const [cardListTitle,setCardListTitle] = React.useState("");
     const [cardListId,setCardListId] = React.useState(JSON.parse(localStorage.cardListId) ||0);
 
@@ -11,10 +11,11 @@ const AddCardListForm = ({hideForm, addCardList, ...props})=>{
 
     const handleCancel = React.useCallback(()=>{
         setCardListTitle("");
-        hideForm();
-    },[hideForm]);
+        props.hideForm();
+    },[props]);
 
     const handleSave = React.useCallback(()=>{
+        alert(1);
         const tempObj ={};
         const val = cardListId;
         tempObj.id = val;
@@ -23,9 +24,9 @@ const AddCardListForm = ({hideForm, addCardList, ...props})=>{
         localStorage.cardListId = JSON.stringify(val+1);
         tempObj.cardListTitle = cardListTitle;
         tempObj.cards = [];
-        addCardList(tempObj);
+        props.addCardList(tempObj);
         handleCancel();
-    },[addCardList,cardListId,cardListTitle,handleCancel]);
+    },[props,cardListId,cardListTitle,handleCancel]);
 
     return (
         <div className={"add-card-list-form card-list "+props.className}>

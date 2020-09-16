@@ -47,11 +47,9 @@ const CardListGroup = ()=>{
     const mapCardListGroup = React.useCallback((cardList)=>
     (<CardList key={cardList.id} editCard={editCard} deleteCard={deleteCard} addCard={addCard} deleteCardList={deleteCardList} cardList={cardList}/>),[editCard,deleteCard,addCard,deleteCardList]);
     
-    const mappedCardListGroup = React.useMemo(()=>{cardLists.map(mapCardListGroup)},[cardLists,mapCardListGroup]);
-    
     return(
         <div className="card-list-group">
-            {mappedCardListGroup}
+            {cardLists.map(mapCardListGroup)}
             <AddCardList addCardList={addCardList}/>
         </div>
     );

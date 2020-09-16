@@ -4,7 +4,7 @@ import CancelIcon from "./cancel-icon.png";
 import EditIcon from "./edit-icon.png";
 import CardForm from './CardForm';
 
-const Card = ({props})=>{
+const Card = (props)=>{
     const [isForm,setIsForm] = React.useState(false);
     const handleCancel = React.useCallback(()=>{
         const result = window.confirm("Do you want to delete this card?");
