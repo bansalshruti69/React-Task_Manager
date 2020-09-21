@@ -1,16 +1,18 @@
 import React from 'react';
 import "./dashBoard.css";
 import CardForm from "./CardForm.js";
+import {useCallback} from 'react';
+import {useState} from 'react';
 
-const AddCard = React.memo((props)=>{
-    const [isForm,setIsForm] = React.useState(false); 
-    function showForm(){
+const AddCard = (props)=>{
+    const [isForm,setIsForm] = useState(false); 
+    const showForm = useCallback(()=>{
         setIsForm(true);
-    }
+    },[]);
 
-    function hideForm(){
+    const hideForm = useCallback(()=>{
         setIsForm(false);
-    }
+    },[]);
 
     return (
         <div>
@@ -18,6 +20,6 @@ const AddCard = React.memo((props)=>{
             <CardForm hideForm={hideForm} className={(isForm?"show":"hide")} {...props}/>
         </div>
     );
-})
+}
 
 export default AddCard;

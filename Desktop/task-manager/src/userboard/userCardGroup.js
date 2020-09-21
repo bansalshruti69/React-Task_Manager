@@ -2,16 +2,33 @@ import React from 'react';
 import "./userBoard.css";
 import UserCard from "./UserCard.js";
 import UserAddCard from "./UserAddCard.js"
+import FloatingButton from "./FloatingButton.js";
+import CustomModal from './CustomModal';
+import {useState, useCallback, useEffect, useMemo, useRef} from 'react';
 
 const UserCardGroup = ()=>{
-    const [users,setUsers] = React.useState(JSON.parse(localStorage.users) || []);
-    const addUser = React.useCallback((obj)=>{
+    const [modalIsOpen,setIsOpen] = useState(false);
+    const [users,setUsers] = useState(JSON.parse(localStorage.users) || []);
+    const [val,setVal] = useState("hide");
+    const [countries, setCountries] = useState(['shruti']);
+
+    useEffect(()=>{
+        fetch('https://restcountries.eu/rest/v2/all')
+        .then(response => response.json())
+        .then(data => {
+            setCountries(data.map(x=>x.name));
+        })
+        .catch(err=>console.log("Error",err));
+        
+    },[countries])
+
+    const addUser = useCallback((obj)=>{
         const tempUsers = [...users,obj];
         setUsers(tempUsers);
         localStorage.users = JSON.stringify(tempUsers);
     },[users]);
 
-    const deleteUser = React.useCallback((val)=>{
+    const deleteUser = useCallback((val)=>{
         const tempUsers = users.filter(function deleteFilter(user) {
             return user.id!==val}
         );
@@ -19,7 +36,7 @@ const UserCardGroup = ()=>{
         localStorage.users = JSON.stringify(tempUsers);
     },[users]);
 
-    const editUser = React.useCallback((obj)=>{
+    const editUser = useCallback((obj)=>{
         const tempUsers = [...users];
         const index = tempUsers.findIndex(function editFind(user){
             return user.id===obj.id}
@@ -29,17 +46,43 @@ const UserCardGroup = ()=>{
         localStorage.users = JSON.stringify(tempUsers);
     },[users]);
 
-    const userMap = React.useCallback((x)=>{
-        return (<UserCard key ={x.id} user={x} handleDelete={deleteUser} handleEdit={editUser}/>);
-    },[editUser,deleteUser]);
+    const userMap = useCallback((x)=>{
+        return (<UserCard key ={x.id} user={x} handleDelete={deleteUser} handleEdit={editUser} countries={countries}/>);
+    },[editUser,deleteUser,countries]);
 
-    const userMapped = React.useMemo(()=>users.map(userMap),[users,userMap]);
+    const userMapped = useMemo(()=>users.map(userMap),[users,userMap]);
+
+    const element = useRef(null)
+
+    const handleClick = useCallback(()=>{
+        element.current.scrollBy(0,20);
+    },[]);
+
+    useEffect(()=>{
+        if(element.current)
+            (element.current.scrollHeight - element.current.scrollTop-element.current.clientHeight)>0 ? setVal("show"):setVal("hide");
+    },[element,users]);
+
+    const handleScroll = useCallback(()=>{
+        (element.current.scrollHeight - element.current.scrollTop-element.current.clientHeight)>0 ? setVal("show"):setVal("hide");
+    },[element]);
+
+    const handleGlobalClick = useCallback(()=>{
+        setIsOpen(true);
+    },[])
+
+    const closeModal = useCallback(()=>{
+        setIsOpen(false);
+    },[])
 
     return(
-        <div className="user-card-group-container">
+        <div ref ={element} className="user-card-group-container" onScroll={handleScroll} >
+            <span className="add-user-global" onClick={handleGlobalClick} >Add User</span>
             <div className="user-card-group">
                 {userMapped}
-                <UserAddCard handleAddUser={addUser}/>
+                <UserAddCard countries={countries} handleAddUser={addUser}/>
+                <FloatingButton handleClick={handleClick} val={val}/>
+                <CustomModal modalIsOpen={modalIsOpen} showUserCard={closeModal} handleAddUser={addUser} countries={countries}/>
             </div>
         </div>
     )

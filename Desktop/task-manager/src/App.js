@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import UserBoard from './userboard/UserBoard.js';
 import DashBoard from './dashboard/DashBoard.js';
 

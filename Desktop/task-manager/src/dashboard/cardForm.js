@@ -1,30 +1,31 @@
 import React from 'react';
 import "./dashBoard.css";
+import {useState, useCallback} from 'react';
 
-const CardForm = ({hideForm, ...props})=>{
+const CardForm = ({cardList, addCard,editCard, hideForm, ...props})=>{
     const obj = props.card? {...props.card} : {id:null, task:"", status:""};
-    const [cardFormValue,setCardFormValue] = React.useState(obj);
+    const [cardFormValue,setCardFormValue] = useState(obj);
 
-    const handleCancel = React.useCallback(()=>{
+    const handleCancel = useCallback(()=>{
         hideForm();
         setCardFormValue(obj);
     },[hideForm,obj]);
 
-    const handleSubmit = React.useCallback((event)=>{
+    const handleSubmit = useCallback((event)=>{
         event.preventDefault();
         const tempObj = {...cardFormValue};
         if(obj.id===null){
-        tempObj.id = props.cardList.cardId;
-        props.addCard(props.cardList.id ,tempObj);
+        tempObj.id = cardList.cardId;
+        addCard(cardList.id ,tempObj);
         handleCancel();
         }
         else{
-            props.editCard(props.cardList.id,tempObj);
+            editCard(cardList.id,tempObj);
             hideForm();
         }
-    },[props,hideForm,cardFormValue,handleCancel,obj]);
+    },[cardList, addCard, editCard,hideForm,cardFormValue,handleCancel,obj]);
 
-    const handleChange = React.useCallback((event)=>{
+    const handleChange = useCallback((event)=>{
         setCardFormValue({...cardFormValue, [event.target.name]:event.target.value});
     },[cardFormValue]);
 

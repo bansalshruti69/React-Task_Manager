@@ -3,21 +3,22 @@ import "./dashBoard.css";
 import CancelIcon from "./cancel-icon.png";
 import EditIcon from "./edit-icon.png";
 import CardForm from './CardForm';
+import {useState, useCallback} from 'react';
 
-const Card = (props)=>{
-    const [isForm,setIsForm] = React.useState(false);
-    const handleCancel = React.useCallback(()=>{
+const Card = ({deleteCard, card, cardList, ...props})=>{
+    const [isForm,setIsForm] = useState(false);
+    const handleCancel = useCallback(()=>{
         const result = window.confirm("Do you want to delete this card?");
         if(!result)
         return;
-        props.deleteCard(props.cardList.id,props.card.id);
-    },[props]);
+        deleteCard(cardList.id,card.id);
+    },[deleteCard,card,cardList]);
 
-    const handleEdit = React.useCallback(()=>{
+    const handleEdit = useCallback(()=>{
         setIsForm(true);
     },[]);
 
-    const hideForm = React.useCallback(()=>{
+    const hideForm = useCallback(()=>{
         setIsForm(false);
     },[]);
 
@@ -26,10 +27,10 @@ const Card = (props)=>{
         <div className={"card-display "+(isForm?"hide":"show")}>
             <div className="card-content">
                 <div className="card-text">
-                    {props.card.task}
+                    {card.task}
                 </div>
                 <div className="card-due-date">
-                    Due Date: {props.card.status}
+                    Due Date: {card.status}
                 </div>
             </div>
             <div className="card-button">
@@ -37,7 +38,7 @@ const Card = (props)=>{
                 <img onClick={handleEdit} src={EditIcon} alt="Edit Card"></img>
             </div>
         </div>
-        <CardForm hideForm={hideForm} className={(isForm?"show":"hide")} {...props}/>
+        <CardForm hideForm={hideForm} className={(isForm?"show":"hide")} {...props} cardList={cardList} card={card}/>
         </>
     );
 }

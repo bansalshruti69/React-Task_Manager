@@ -1,9 +1,10 @@
 import React from 'react';
 import './header.css';
+import {useCallback} from 'react';
 
 const Header = ({currState, handleClick})=>{
    // console.log("header",1);
-    const pageHandleClick = React.useCallback((event)=>{
+    const pageHandleClick = useCallback((event)=>{
         handleClick(event.target.textContent.toLowerCase());
     },[handleClick]);
     return (

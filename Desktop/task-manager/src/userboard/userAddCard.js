@@ -1,15 +1,16 @@
 import React from 'react';
 import "./userBoard.css";
 import AddIcon from "./assets/add-icon.png";
-import UserForm from "./UserForm.js"
+import UserForm from "./UserForm.js";
+import {useState, useCallback} from 'react';
 
 const UserAddCard = (props) => {
-    const [isForm,setIsForm] = React.useState(false);
-    const handleAddIconClick = React.useCallback(()=>{
+    const [isForm,setIsForm] = useState(false);
+    const handleAddIconClick = useCallback(()=>{
         setIsForm(true);
     },[]);
 
-    const hideForm = React.useCallback(()=>{
+    const hideForm = useCallback(()=>{
         setIsForm(false);
     },[]);
     

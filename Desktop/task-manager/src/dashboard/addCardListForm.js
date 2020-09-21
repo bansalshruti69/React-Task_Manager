@@ -1,21 +1,22 @@
 import React from 'react';
 import "./dashBoard.css";
+import {useCallback} from 'react';
+import {useState} from 'react';
 
-const AddCardListForm = (props)=>{
-    const [cardListTitle,setCardListTitle] = React.useState("");
-    const [cardListId,setCardListId] = React.useState(JSON.parse(localStorage.cardListId) ||0);
+const AddCardListForm = ({addCardList, hideForm,...props})=>{
+    const [cardListTitle,setCardListTitle] = useState("");
+    const [cardListId,setCardListId] = useState(JSON.parse(localStorage.cardListId) ||0);
 
-    const handleChange = React.useCallback((event)=>{
+    const handleChange = useCallback((event)=>{
         setCardListTitle(event.target.value);
     },[])
 
-    const handleCancel = React.useCallback(()=>{
+    const handleCancel = useCallback(()=>{
         setCardListTitle("");
-        props.hideForm();
-    },[props]);
+        hideForm();
+    },[hideForm]);
 
-    const handleSave = React.useCallback(()=>{
-        alert(1);
+    const handleSave = useCallback(()=>{
         const tempObj ={};
         const val = cardListId;
         tempObj.id = val;
@@ -24,9 +25,9 @@ const AddCardListForm = (props)=>{
         localStorage.cardListId = JSON.stringify(val+1);
         tempObj.cardListTitle = cardListTitle;
         tempObj.cards = [];
-        props.addCardList(tempObj);
+        addCardList(tempObj);
         handleCancel();
-    },[props,cardListId,cardListTitle,handleCancel]);
+    },[addCardList,cardListId,cardListTitle,handleCancel]);
 
     return (
         <div className={"add-card-list-form card-list "+props.className}>
