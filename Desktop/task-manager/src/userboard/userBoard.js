@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../header/Header.js';
 import "./userBoard.css";
-import UserCardGroup from "./UserCardGroup.js"
+import UserCardGroup from "./UserCardGroup"
 
 const UserBoard = (props) => {
     return (

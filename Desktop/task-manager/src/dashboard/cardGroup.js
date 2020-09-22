@@ -1,11 +1,10 @@
 import React from 'react';
 import "./dashBoard.css";
-import Card from "./Card.js"
-import AddCard from "./AddCard.js";
+import Card from "./Card"
+import AddCard from "./AddCard";
 import {useCallback} from 'react';
 //complete
 const CardGroup = ({cardList,...props})=>{
-    console.log("Hey",props);
     const mapCardGroup = useCallback((card)=>{
         return (<Card key={card.id} card={card} {...props} cardList={cardList}/>);
     },[props,cardList]);

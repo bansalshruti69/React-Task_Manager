@@ -1,8 +1,8 @@
 import React from 'react';
 import "./userBoard.css";
-import UserCard from "./UserCard.js";
-import UserAddCard from "./UserAddCard.js"
-import FloatingButton from "./FloatingButton.js";
+import UserCard from "./UserCard";
+import UserAddCard from "./UserAddCard"
+import FloatingButton from "./FloatingButton";
 import CustomModal from './CustomModal';
 import {useState, useCallback, useEffect, useMemo, useRef} from 'react';
 
@@ -10,7 +10,7 @@ const UserCardGroup = ()=>{
     const [modalIsOpen,setIsOpen] = useState(false);
     const [users,setUsers] = useState(JSON.parse(localStorage.users) || []);
     const [val,setVal] = useState("hide");
-    const [countries, setCountries] = useState(['shruti']);
+    const [countries, setCountries] = useState([]);
 
     useEffect(()=>{
         fetch('https://restcountries.eu/rest/v2/all')

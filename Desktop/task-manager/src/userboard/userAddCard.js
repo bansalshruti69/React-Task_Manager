@@ -1,7 +1,7 @@
 import React from 'react';
 import "./userBoard.css";
 import AddIcon from "./assets/add-icon.png";
-import UserForm from "./UserForm.js";
+import UserForm from "./UserForm";
 import {useState, useCallback} from 'react';
 
 const UserAddCard = (props) => {

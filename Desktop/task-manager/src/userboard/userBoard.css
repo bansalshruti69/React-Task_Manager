@@ -128,13 +128,17 @@ button:hover{
     margin-bottom: 5px;
     width:100%;
     display: block;
-    height: 20px;
+    height: 30px;
 }
 
 .user-form-gender input{
     margin-top: 5px;
     margin-right: 5px;
     display: inline-block;
+}
+
+.modal-user-form .user-form-gender{
+    padding: 5px;
 }
 
 .add-user-global{
@@ -155,6 +159,36 @@ button:hover{
 }
 
 .modal-title{
+    margin-bottom: 20px;
     font-size: 40px;
     font-weight: 700;
+}
+
+.modal-user-form .button-group{
+    padding-top: 10px;
+    text-align: center;
+}
+
+.modal-close-icon{
+    float: right;
+    vertical-align: top;
+}
+
+.modal-close-icon:hover{
+    cursor: pointer;
+}
+
+.modal-user-form label{
+    padding:5px;
+}
+
+.modal-user-form button{
+    font-size: 30px;
+    font-weight: 700;
+    width: 45%;
+    height: 50px;
+}
+
+select{
+    height: 30px;
 }

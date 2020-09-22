@@ -1,7 +1,8 @@
 import React from 'react';
 import "./dashBoard.css";
 import {useState, useCallback} from 'react';
-
+import {Input} from "baseui/input";
+//complete
 const CardForm = ({cardList, addCard,editCard, hideForm, ...props})=>{
     const obj = props.card? {...props.card} : {id:null, task:"", status:""};
     const [cardFormValue,setCardFormValue] = useState(obj);
@@ -32,13 +33,15 @@ const CardForm = ({cardList, addCard,editCard, hideForm, ...props})=>{
     return(
         <div className={"add-card-display card-form "+props.className}>
             <label>Task:
-                <input type="text" value={cardFormValue.task} name="task" onChange={handleChange}/>
+                <Input type="text" value={cardFormValue.task} name="task" onChange={handleChange} placeholder="Add Task"/>
             </label>
             <label>Due Date:
-                <input type='date' value={cardFormValue.status} name="status" onChange={handleChange}/>
+                <Input type='date' value={cardFormValue.status} name="status" onChange={handleChange}/>
             </label>
+            <div className="button-group">
             <button onClick={handleSubmit}>Save</button>
             <button onClick={handleCancel}>Cancel</button>
+            </div>
         </div>
     )
 }

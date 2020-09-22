@@ -91,13 +91,6 @@
     background-color: rgba(255,255,255, 0.5);
 }
 
-.add-card-list-form input{
-    height: 30px;
-    margin: 5px;
-    width: 252px;
-    box-sizing: border-box;
-}
-
 .hide{
     display: none;
 }
@@ -228,3 +221,25 @@ input{
     background-color: rgba(255,255,255,1);
     color: #377d24;
 }
+
+.modal-card-form{
+    background-color: green;
+}
+
+
+.modal-card-form button{
+    margin-top: 20px;
+    padding:0;
+    font-size: 30px;
+    font-weight: 700;
+    width:110px;
+    height: 50px;
+}
+
+.modal-card-form label{
+    display: block;
+    padding: 10px 0 ;
+}
+
+
+

@@ -1,9 +1,9 @@
 import React from 'react';
-import Header from '../header/Header.js';
-import AccountManagementMessage from "./AccountManagementMessage.js";
+import Header from '../header/Header';
+import AccountManagementMessage from "./AccountManagementMessage";
 import "./dashBoard.css";
 import CardListGroup from "./CardListGroup";
-
+//complete
 const DashBoard = (props)=>{
     return (
         <div className="dashboard">

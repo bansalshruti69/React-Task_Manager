@@ -2,7 +2,8 @@ import React from 'react';
 import "./dashBoard.css";
 import {useCallback} from 'react';
 import {useState} from 'react';
-
+import { Input } from "baseui/input";
+//complete
 const AddCardListForm = ({addCardList, hideForm,...props})=>{
     const [cardListTitle,setCardListTitle] = useState("");
     const [cardListId,setCardListId] = useState(JSON.parse(localStorage.cardListId) ||0);
@@ -29,11 +30,28 @@ const AddCardListForm = ({addCardList, hideForm,...props})=>{
         handleCancel();
     },[addCardList,cardListId,cardListTitle,handleCancel]);
 
+    
     return (
+        
         <div className={"add-card-list-form card-list "+props.className}>
-            <input placeholder="Enter the card list title here..." value={cardListTitle} onChange={handleChange}/>
+            <Input 
+            placeholder="Enter the card list title here..." 
+            value={cardListTitle} 
+            onChange={handleChange}
+            overrides={{
+                InputContainer: {
+                  style: ({ $theme }) => {
+                    return {
+                      outline: `${$theme.colors.warning600} solid`,
+                      backgroundColor:"white",
+                      borderRadius:"3px"
+                    };
+                  }
+                }
+              }}/>
             <button onClick={handleSave}>Save</button>
             <button onClick={handleCancel}>Cancel</button>
+            
         </div>
     );
 }

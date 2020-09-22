@@ -1,6 +1,6 @@
 import React from 'react';
 import "./dashBoard.css";
-import CardGroup from "./CardGroup.js";
+import CardGroup from "./CardGroup";
 import CancelIcon from "./cancel-icon.png";
 import {useCallback} from 'react';
 //compelete

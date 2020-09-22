@@ -3,22 +3,25 @@ import "./dashBoard.css";
 import Modal from 'react-modal';
 import CardForm from './CardForm';
 import {useState, useCallback} from 'react';
+import CancelIcon from "./cancel-icon.png"
 //complete
-const CustomModal = (props)=>{
+const customStyles = {
+    content : {
+      color                 : 'white',
+      backgroundColor       : 'green',
+      top                   : '50%',
+      left                  : '50%',
+      right                 : 'auto',
+      bottom                : 'auto',
+      marginRight           : '-50%',
+      transform             : 'translate(-50%, -50%)',
+      padding               : '40px'
+    }
+};
+
+const CustomModal = ({className, ...props})=>{
 
     const [user,setUser] = useState(0);
-    const customStyles = {
-        content : {
-          color                 : 'white',
-          backgroundColor       : 'green',
-          top                   : '50%',
-          left                  : '50%',
-          right                 : 'auto',
-          bottom                : 'auto',
-          marginRight           : '-50%',
-          transform             : 'translate(-50%, -50%)'
-        }
-    };
 
     const userMap = useCallback((cardList,index)=>{
         return(
@@ -32,21 +35,23 @@ const CustomModal = (props)=>{
         setUser(event.target.value);
     },[]);
 
-    function ModalForm(){
+    const ModalForm = ()=>{
         return(
             <Modal isOpen={props.modalIsOpen} style={customStyles} onRequestClose={props.hideForm}>
-                <div className="modal-title">Add a Card.</div>
+                <div className="modal-title">Add a Card.
+                <img src={CancelIcon} alt="Close Modal" className="modal-close-icon" onClick={props.hideForm}/>
+                </div>
                 <label>Select a user:<br />
-                    <select value={user} onChange={handleChange}>
+                    <select value={user} onChange={handleChange} style={{width:"100%"}}>
                         {props.cardLists.map(userMap)}
                     </select>
                 </label>
-                <CardForm {...props} cardList={props.cardLists[user]} />
+                <CardForm className={"modal-card-form "+className} {...props} cardList={props.cardLists[user]} />
             </Modal>
         )
     }
 
-    function ModalEmpty(){
+    const ModalEmpty = ()=>{
         return(
             <Modal isOpen={props.modalIsOpen} style={customStyles} onRequestClose={props.hideForm}>
                 No User Available!
