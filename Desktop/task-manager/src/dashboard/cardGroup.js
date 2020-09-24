@@ -4,15 +4,15 @@ import Card from "./Card"
 import AddCard from "./AddCard";
 import {useCallback} from 'react';
 //complete
-const CardGroup = ({cardList,...props})=>{
+const CardGroup = ({cardList})=>{
     const mapCardGroup = useCallback((card)=>{
-        return (<Card key={card.id} card={card} {...props} cardList={cardList}/>);
-    },[props,cardList]);
+        return (<Card key={card.id} card={card} cardList={cardList}/>);
+    },[cardList]);
 
     return (
         <div className="card-group">
             {cardList.cards.map(mapCardGroup)}
-            <AddCard {...props} cardList={cardList}/>
+            <AddCard cardList={cardList}/>
         </div>
     );
 }

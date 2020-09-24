@@ -4,10 +4,8 @@ import {useCallback} from 'react';
 import {useState} from 'react';
 import { Input } from "baseui/input";
 //complete
-const AddCardListForm = ({addCardList, hideForm,...props})=>{
+const AddCardListForm = ({hideForm, className,cardListId,setCardListId,addCardListFunction})=>{
     const [cardListTitle,setCardListTitle] = useState("");
-    const [cardListId,setCardListId] = useState(JSON.parse(localStorage.cardListId) ||0);
-
     const handleChange = useCallback((event)=>{
         setCardListTitle(event.target.value);
     },[])
@@ -18,22 +16,20 @@ const AddCardListForm = ({addCardList, hideForm,...props})=>{
     },[hideForm]);
 
     const handleSave = useCallback(()=>{
-        const tempObj ={};
-        const val = cardListId;
-        tempObj.id = val;
+        const tempObj ={}; 
+        tempObj.id = cardListId;;
         tempObj.cardId = 0;
-        setCardListId(val+1);
-        localStorage.cardListId = JSON.stringify(val+1);
+        setCardListId();
         tempObj.cardListTitle = cardListTitle;
         tempObj.cards = [];
-        addCardList(tempObj);
+        addCardListFunction(tempObj);
         handleCancel();
-    },[addCardList,cardListId,cardListTitle,handleCancel]);
+    },[addCardListFunction,cardListId,cardListTitle,handleCancel,setCardListId]);
 
     
     return (
         
-        <div className={"add-card-list-form card-list "+props.className}>
+        <div className={"add-card-list-form card-list "+className}>
             <Input 
             placeholder="Enter the card list title here..." 
             value={cardListTitle} 

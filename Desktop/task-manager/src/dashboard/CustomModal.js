@@ -19,7 +19,7 @@ const customStyles = {
     }
 };
 
-const CustomModal = ({className, ...props})=>{
+const CustomModal = ({cardLists, modalIsOpen, hideForm})=>{
 
     const [user,setUser] = useState(0);
 
@@ -37,29 +37,29 @@ const CustomModal = ({className, ...props})=>{
 
     const ModalForm = ()=>{
         return(
-            <Modal isOpen={props.modalIsOpen} style={customStyles} onRequestClose={props.hideForm}>
+            <Modal isOpen={modalIsOpen} style={customStyles} onRequestClose={hideForm}>
                 <div className="modal-title">Add a Card.
-                <img src={CancelIcon} alt="Close Modal" className="modal-close-icon" onClick={props.hideForm}/>
+                <img src={CancelIcon} alt="Close Modal" className="modal-close-icon" onClick={hideForm}/>
                 </div>
                 <label>Select a user:<br />
                     <select value={user} onChange={handleChange} style={{width:"100%"}}>
-                        {props.cardLists.map(userMap)}
+                        {cardLists.map(userMap)}
                     </select>
                 </label>
-                <CardForm className={"modal-card-form "+className} {...props} cardList={props.cardLists[user]} />
+                <CardForm className="modal-card-form" cardList={cardLists[user]} hideForm={hideForm} />
             </Modal>
         )
     }
 
     const ModalEmpty = ()=>{
         return(
-            <Modal isOpen={props.modalIsOpen} style={customStyles} onRequestClose={props.hideForm}>
+            <Modal isOpen={modalIsOpen} style={customStyles} onRequestClose={hideForm}>
                 No User Available!
             </Modal>
         )
     }
     return(
-        props.cardLists.length? ModalForm() : ModalEmpty()
+        cardLists.length? ModalForm() : ModalEmpty()
     )
 }
 

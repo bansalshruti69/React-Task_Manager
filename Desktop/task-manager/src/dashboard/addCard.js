@@ -4,7 +4,7 @@ import CardForm from "./CardForm";
 import {useCallback} from 'react';
 import {useState} from 'react';
 //complete
-const AddCard = (props)=>{
+const AddCard = ({cardList})=>{
     const [isForm,setIsForm] = useState(false); 
     const showForm = useCallback(()=>{
         setIsForm(true);
@@ -17,7 +17,7 @@ const AddCard = (props)=>{
     return (
         <div>
             <div onClick={showForm} className={"add-card-display "+(isForm?"hide":"show")}>+ Add Card</div>
-            <CardForm hideForm={hideForm} className={(isForm?"show":"hide")} {...props}/>
+            <CardForm hideForm={hideForm} className={(isForm?"show":"hide")} cardList={cardList}/>
         </div>
     );
 }

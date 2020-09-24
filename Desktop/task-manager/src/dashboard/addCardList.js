@@ -1,10 +1,10 @@
 import React from 'react';
 import "./dashBoard.css";
-import AddCardListForm from "./AddCardListForm"
+import AddCardListForm from "./AddCardListFormContainer"
 import {useCallback} from 'react';
 import {useState} from 'react';
 //complete
-const AddCardList = (props)=>{
+const AddCardList = ()=>{
     const [isForm,setIsForm] = useState(false);
     const showForm = useCallback(()=>{
         setIsForm(true);
@@ -19,7 +19,7 @@ const AddCardList = (props)=>{
         <div onClick={showForm} className={"card-list add-card-list "+(isForm?"hide":"show")}>
             <span>+ Add another card list</span>
         </div>
-        <AddCardListForm hideForm={hideForm} className={(isForm?"show":"hide")} {...props}/>
+        <AddCardListForm hideForm={hideForm} className={(isForm?"show":"hide")}/>
         </div>
     );
 }

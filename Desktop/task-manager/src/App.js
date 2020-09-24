@@ -4,29 +4,28 @@ import DashBoard from './dashboard/DashBoard.js';
 import {Client as Styletron} from 'styletron-engine-atomic';
 import {Provider as StyletronProvider} from 'styletron-react';
 import {LightTheme, BaseProvider} from 'baseui';
+import { connect } from 'react-redux'
+import { DASHBOARD } from './reducer/actions/header.js';
 
-const App = ()=>{
+let App = ({page})=>{
   const engine = new Styletron();
 
-  const [page,setPage] = React.useState('userboard');
-  const pageHandleClick = React.useCallback((val)=>{
-    setPage(val);
-  },[])
-  const dashBoardComp = (
+  return (
     <StyletronProvider value={engine}>
       <BaseProvider theme={LightTheme}>
-        <DashBoard currState={page} handleClick={pageHandleClick}/>
+        {(page === DASHBOARD) ? <DashBoard/>:<UserBoard/>}
       </BaseProvider>
     </StyletronProvider>
   )
-  const userBoardcomp = (
-    <StyletronProvider value={engine}>
-      <BaseProvider theme={LightTheme}>
-        <UserBoard currState={page} handleClick={pageHandleClick}/>
-      </BaseProvider>
-    </StyletronProvider>
-  )
-  return  (page==='userboard') ? userBoardcomp: dashBoardComp;
 }
+
+const mapStateToAppProps = state=>(
+  {page: state.page}
+)
+
+
+App = connect(
+  mapStateToAppProps
+)(App);
 
 export default App;

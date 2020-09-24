@@ -4,7 +4,7 @@ import CardGroup from "./CardGroup";
 import CancelIcon from "./cancel-icon.png";
 import {useCallback} from 'react';
 //compelete
-const CardList = ({deleteCardList, cardList, ...props})=>{
+const CardList = ({deleteCardList, cardList})=>{
     const handleDelete = useCallback(()=>{
         const result = window.confirm("Do you want to delete this User?");
         if(!result)
@@ -18,7 +18,7 @@ const CardList = ({deleteCardList, cardList, ...props})=>{
                 <span className="cardList-title-name">{cardList.cardListTitle}</span>
                 <img src={CancelIcon} alt="Delete" className="delete-cardList-icon" onClick={handleDelete}></img>
             </div> 
-            <CardGroup {...props} cardList={cardList}/>
+            <CardGroup cardList={cardList}/>
         </div>
     );
 }

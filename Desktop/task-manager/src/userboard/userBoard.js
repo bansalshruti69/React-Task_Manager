@@ -1,12 +1,12 @@
 import React from 'react';
-import Header from '../header/Header.js';
+import Header from '../header/HeaderContainer';
 import "./userBoard.css";
 import UserCardGroup from "./UserCardGroup"
 
-const UserBoard = (props) => {
+const UserBoard = () => {
     return (
       <div className="userboard">
-          <Header {...props}/>
+          <Header/>
           <UserCardGroup/>
       </div>
     )

@@ -2,9 +2,12 @@ import React from 'react';
 import "./dashBoard.css";
 import {useState, useCallback} from 'react';
 import {Input} from "baseui/input";
+import {connect} from 'react-redux';
+import { addCard, editCard } from '../reducer/actions/dashboard';
+
 //complete
-const CardForm = ({cardList, addCard,editCard, hideForm, ...props})=>{
-    const obj = props.card? {...props.card} : {id:null, task:"", status:""};
+let CardForm = ({dispatch, card, className,hideForm,cardList})=>{
+    const obj = card? {...card} : {id:null, task:"", status:""};
     const [cardFormValue,setCardFormValue] = useState(obj);
 
     const handleCancel = useCallback(()=>{
@@ -17,21 +20,21 @@ const CardForm = ({cardList, addCard,editCard, hideForm, ...props})=>{
         const tempObj = {...cardFormValue};
         if(obj.id===null){
         tempObj.id = cardList.cardId;
-        addCard(cardList.id ,tempObj);
+        dispatch(addCard(cardList.id ,tempObj))
         handleCancel();
         }
         else{
-            editCard(cardList.id,tempObj);
+            dispatch(editCard(cardList.id,tempObj));
             hideForm();
         }
-    },[cardList, addCard, editCard,hideForm,cardFormValue,handleCancel,obj]);
+    },[cardList, dispatch,hideForm,cardFormValue,handleCancel,obj]);
 
     const handleChange = useCallback((event)=>{
         setCardFormValue({...cardFormValue, [event.target.name]:event.target.value});
     },[cardFormValue]);
 
     return(
-        <div className={"add-card-display card-form "+props.className}>
+        <div className={"add-card-display card-form "+className}>
             <label>Task:
                 <Input type="text" value={cardFormValue.task} name="task" onChange={handleChange} placeholder="Add Task"/>
             </label>
@@ -45,5 +48,7 @@ const CardForm = ({cardList, addCard,editCard, hideForm, ...props})=>{
         </div>
     )
 }
+
+CardForm = connect()(CardForm);
 
 export default CardForm; 

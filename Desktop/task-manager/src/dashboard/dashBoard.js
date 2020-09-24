@@ -1,13 +1,13 @@
 import React from 'react';
-import Header from '../header/Header';
+import Header from '../header/HeaderContainer';
 import AccountManagementMessage from "./AccountManagementMessage";
 import "./dashBoard.css";
-import CardListGroup from "./CardListGroup";
+import CardListGroup from "./CardListGroupContainer";
 //complete
-const DashBoard = (props)=>{
+const DashBoard = ()=>{
     return (
         <div className="dashboard">
-            <Header {...props}/>
+            <Header/>
             <div className="dashboard-body">
                <AccountManagementMessage/>
                <CardListGroup/>

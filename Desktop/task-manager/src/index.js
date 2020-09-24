@@ -1,12 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import App from './AppContainer';
 import * as serviceWorker from './serviceWorker';
+import { createStore } from 'redux'
+import taskManager from "./reducer/reducer/taskManager";
+import { Provider } from 'react-redux'
+import {loadState, saveState} from './localStorage'
+
+const persistedState = loadState();
+const store = createStore(
+  taskManager,
+  persistedState
+);
+
+store.subscribe(()=> {
+  saveState({dashBoard: store.getState().dashBoard});
+})
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

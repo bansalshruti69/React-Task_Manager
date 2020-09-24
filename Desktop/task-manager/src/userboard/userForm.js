@@ -3,7 +3,6 @@ import "./userBoard.css";
 import {useState, useCallback} from 'react';
 import { Input } from "baseui/input";
 import { RadioGroup, Radio, ALIGN } from "baseui/radio";
-import { Select } from "baseui/select";
 
 const UserForm = ({countries, showUserCard, handleEdit, handleAddUser, ...props})=>{
     const obj = props.user? {...props.user}: {gender:'',id:null, name: '', profile: '', location: '', image:'',country:''};
@@ -47,7 +46,6 @@ const UserForm = ({countries, showUserCard, handleEdit, handleAddUser, ...props}
             <label>Profile: <Input name="profile" value={formUser.profile} onChange={handleChange}/></label>
             <label>Location: <Input name="location" value={formUser.location} onChange={handleChange}/></label>
             <label>Image: <Input name="image" value={formUser.image} onChange={handleChange}/></label>
-            <Select placeholder="Select a Country"/>
             <label>Country:
                 <select className="user-form-country" name="country" onChange={handleChange} value={formUser.country}>
                     {countries.map(mapCountry)}
@@ -66,7 +64,7 @@ const UserForm = ({countries, showUserCard, handleEdit, handleAddUser, ...props}
                     <Radio value="Female">Female</Radio>
                 </RadioGroup>
             </div>
-            <div class="button-group">
+            <div className="button-group">
             <button type='submit' name="action" value="Save">Save</button>
             <button type="button" onClick={handleCancel}>Cancel</button>
             </div>
