@@ -1,6 +1,6 @@
 import { connect } from "react-redux"
-import { incrementCardListId, addCardList } from "../reducer/actions/dashboard"
-import AddCardListForm from "./AddCardListForm"
+import { incrementCardListId, addCardList } from "../../reducer/actions/dashboard"
+import AddCardListForm from "./index"
 
 const mapStateToAddCardListFormProps = state=>({
     cardListId: state.dashBoard.cardListId

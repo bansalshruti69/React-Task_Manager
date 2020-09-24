@@ -3,18 +3,18 @@ import {ADD_CARD, ADD_CARD_LIST, DELETE_CARD, DELETE_CARD_LIST, EDIT_CARD} from 
 export default function cardLists(state = [],action){
     switch(action.type){
         case ADD_CARD:
-            const index = state.findIndex(cardList=> cardList.id===action.id);
+            const card_list_index = state.findIndex(cardList=> cardList.id===action.id);
             return [
-                ...state.slice(0,index),
+                ...state.slice(0,card_list_index),
                 {
-                    ...state[index],
+                    ...state[card_list_index],
                     cards: [
-                        ...state[index].cards,
+                        ...state[card_list_index].cards,
                         action.obj
                     ],
-                    cardId: state[index].cardId + 1
+                    cardId: state[card_list_index].cardId + 1
                 },
-                ...state.slice(index+1)
+                ...state.slice(card_list_index+1)
             ];
         case ADD_CARD_LIST:
             return [
@@ -22,31 +22,31 @@ export default function cardLists(state = [],action){
                 action.obj
             ];
         case DELETE_CARD:
-            const index1 = state.findIndex(cardList=> cardList.id===action.id1);
+            const delete_card_list_index = state.findIndex(cardList=> cardList.id===action.id1);
             return [
-                ...state.slice(0,index1),
+                ...state.slice(0,delete_card_list_index),
                 {
-                    ...state[index1],
-                    cards: state[index1].cards.filter(card=>card.id!==action.id2)
+                    ...state[delete_card_list_index],
+                    cards: state[delete_card_list_index].cards.filter(card=>card.id!==action.id2)
                 },
-                ...state.slice(index1+1)
+                ...state.slice(delete_card_list_index+1)
             ];
         case DELETE_CARD_LIST:
             return state.filter((cardList)=>cardList.id!==action.id);
         case EDIT_CARD:
-            const index2 = state.findIndex(cardList=> cardList.id===action.id);
-            const index3 = state[index2].cards.findIndex(card=>card.id===action.obj.id);
+            const edit_card_list_index = state.findIndex(cardList=> cardList.id===action.id);
+            const edit_card_index = state[edit_card_list_index].cards.findIndex(card=>card.id===action.obj.id);
             return [
-                ...state.slice(0,index2),
+                ...state.slice(0,edit_card_list_index),
                 {
-                    ...state[index2],
+                    ...state[edit_card_list_index],
                     cards: [
-                        ...state[index2].cards.slice(0,index3),
+                        ...state[edit_card_list_index].cards.slice(0,edit_card_index),
                         action.obj,
-                        ...state[index2].cards.slice(index3+1)
+                        ...state[edit_card_list_index].cards.slice(edit_card_index+1)
                     ]
                 },
-                ...state.slice(index2+1)
+                ...state.slice(edit_card_list_index+1)
             ];
         default:
             return state;

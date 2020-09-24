@@ -5,10 +5,10 @@ import UserAddCard from "./UserAddCard"
 import FloatingButton from "./FloatingButton";
 import CustomModal from './CustomModal';
 import {useState, useCallback, useEffect, useMemo, useRef} from 'react';
+import {connect} from 'react-redux'
 
-const UserCardGroup = ()=>{
+const UserCardGroup = ({users})=>{
     const [modalIsOpen,setIsOpen] = useState(false);
-    const [users,setUsers] = useState(JSON.parse(localStorage.users) || []);
     const [val,setVal] = useState("hide");
     const [countries, setCountries] = useState([]);
 
@@ -22,33 +22,9 @@ const UserCardGroup = ()=>{
         
     },[countries])
 
-    const addUser = useCallback((obj)=>{
-        const tempUsers = [...users,obj];
-        setUsers(tempUsers);
-        localStorage.users = JSON.stringify(tempUsers);
-    },[users]);
-
-    const deleteUser = useCallback((val)=>{
-        const tempUsers = users.filter(function deleteFilter(user) {
-            return user.id!==val}
-        );
-        setUsers(tempUsers);
-        localStorage.users = JSON.stringify(tempUsers);
-    },[users]);
-
-    const editUser = useCallback((obj)=>{
-        const tempUsers = [...users];
-        const index = tempUsers.findIndex(function editFind(user){
-            return user.id===obj.id}
-        );
-        tempUsers[index] = obj;
-        setUsers(tempUsers);
-        localStorage.users = JSON.stringify(tempUsers);
-    },[users]);
-
     const userMap = useCallback((x)=>{
-        return (<UserCard key ={x.id} user={x} handleDelete={deleteUser} handleEdit={editUser} countries={countries}/>);
-    },[editUser,deleteUser,countries]);
+        return (<UserCard key ={x.id} user={x} countries={countries}/>);
+    },[countries]);
 
     const userMapped = useMemo(()=>users.map(userMap),[users,userMap]);
 
@@ -80,12 +56,17 @@ const UserCardGroup = ()=>{
             <span className="add-user-global" onClick={handleGlobalClick} >Add User</span>
             <div className="user-card-group">
                 {userMapped}
-                <UserAddCard countries={countries} handleAddUser={addUser}/>
+                <UserAddCard countries={countries} />
                 <FloatingButton handleClick={handleClick} val={val}/>
-                <CustomModal modalIsOpen={modalIsOpen} showUserCard={closeModal} handleAddUser={addUser} countries={countries}/>
+                <CustomModal modalIsOpen={modalIsOpen} showUserCard={closeModal} countries={countries}/>
             </div>
         </div>
     )
 }
 
-export default UserCardGroup;
+const mapStateToUserCardGroupProps = state=>(
+    {
+        users: state.userBoard.users
+    }
+)
+export default connect(mapStateToUserCardGroupProps)(UserCardGroup);

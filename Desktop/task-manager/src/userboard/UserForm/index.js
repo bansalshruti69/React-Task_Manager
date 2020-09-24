@@ -1,14 +1,13 @@
 import React from 'react';
-import "./userBoard.css";
+import "../userBoard.css";
 import {useState, useCallback} from 'react';
 import { Input } from "baseui/input";
 import { RadioGroup, Radio, ALIGN } from "baseui/radio";
 
-const UserForm = ({countries, showUserCard, handleEdit, handleAddUser, ...props})=>{
-    const obj = props.user? {...props.user}: {gender:'',id:null, name: '', profile: '', location: '', image:'',country:''};
+const UserForm = ({countries, showUserCard,user, className, userId,setUserId,handleAddUser,handleEdit})=>{
+    const obj = user? {...user}: {gender:'',id:null, name: '', profile: '', location: '', image:'',country:''};
     const [formUser, setFormUser] = useState(obj);
-    const [userId,setUserId] = useState(JSON.parse(localStorage.id) ||  0);
-
+   // console.log('UserForm',obj);
     const handleCancel = useCallback(()=>{
         showUserCard();
         setFormUser(obj);
@@ -16,14 +15,12 @@ const UserForm = ({countries, showUserCard, handleEdit, handleAddUser, ...props}
 
     const handleSubmit = useCallback((event)=>{
         event.preventDefault();
-        const val = userId;
         const tempObj = {
             ...formUser
         };
         if(!tempObj.id){
-          tempObj.id = val;
-          setUserId(val+1);
-          localStorage.id = JSON.stringify(val+1);
+          tempObj.id = userId;
+          setUserId();
           handleAddUser(tempObj);
           handleCancel();
         }
@@ -31,7 +28,7 @@ const UserForm = ({countries, showUserCard, handleEdit, handleAddUser, ...props}
             handleEdit(formUser);
             showUserCard();
         }
-    },[handleEdit, showUserCard,handleCancel,formUser,userId, handleAddUser]);
+    },[handleEdit, showUserCard,handleCancel,formUser,userId, handleAddUser,setUserId]);
 
     const handleChange = useCallback((event)=>{
         setFormUser({...formUser, [event.target.name]:event.target.value});
@@ -40,7 +37,7 @@ const UserForm = ({countries, showUserCard, handleEdit, handleAddUser, ...props}
     const mapCountry = useCallback((country)=><option key={country} value={country}>{country}</option>,[]);
     
     return(
-        <form onSubmit={handleSubmit} className={props.className}>
+        <form onSubmit={handleSubmit} className={className}>
             <div className="user-form-other-info">
             <label>Name: <Input name="name" value={formUser.name} onChange={handleChange}/></label>
             <label>Profile: <Input name="profile" value={formUser.profile} onChange={handleChange}/></label>

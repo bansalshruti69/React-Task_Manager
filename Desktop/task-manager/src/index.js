@@ -15,7 +15,7 @@ const store = createStore(
 );
 
 store.subscribe(()=> {
-  saveState({dashBoard: store.getState().dashBoard});
+  saveState(store.getState());
 })
 
 ReactDOM.render(

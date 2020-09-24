@@ -20,7 +20,7 @@ const AccountManagementMessage = ()=>{
     return (
         <>
         <div className={"account-management-message-hidden "+(show?"hide":"show")} onClick={handleShow}>
-    <strong id="account-management-message-hidden-cancel-icon">x</strong>
+            <strong id="account-management-message-hidden-cancel-icon">x</strong>
         </div>
         <div className={"account-management-message "+(show?"show":"hide")} onClick={handleClick}>
             <strong>Heads up!</strong> Your Task Manager account is managed by Sprinklr.

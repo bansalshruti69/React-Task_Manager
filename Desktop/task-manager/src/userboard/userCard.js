@@ -1,10 +1,10 @@
 import React from 'react';
 import "./userBoard.css";
 import UserCardDisplay from "./UserCardDisplay";
-import UserForm from "./UserForm";
+import UserForm from "./UserForm/UserForm";
 import {useState, useCallback} from 'react';
 
-const UserCard = (props)=>{
+const UserCard = ({user,countries})=>{
     //console.log("USerCard",props.user);
     const [isForm,setIsForm] = useState(false);
     const showForm = useCallback(()=>{
@@ -17,8 +17,8 @@ const UserCard = (props)=>{
 
     return(
         <div className="card">
-            <UserCardDisplay showUserForm={showForm} className={(isForm? "hide": "show")} {...props} />
-            <UserForm showUserCard={hideForm} className={(isForm? "show":"hide")} {...props}/>
+            <UserCardDisplay showUserForm={showForm} className={(isForm? "hide": "show")} user={user}/>
+            <UserForm showUserCard={hideForm} className={(isForm? "show":"hide")} countries={countries} user={user}/>
         </div>
     )
 };

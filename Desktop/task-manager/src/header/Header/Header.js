@@ -1,7 +1,7 @@
 import { connect } from "react-redux"
-import Header from "./Header"
+import Header from "./index"
 
-const { navigatePage } = require("../reducer/actions/header")
+const { navigatePage } = require("../../reducer/actions/header")
 
 const mapStateToHeaderprops = state=>({
     currState: state.page

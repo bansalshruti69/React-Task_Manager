@@ -1,8 +1,8 @@
 import React from 'react';
-import "./dashBoard.css";
-import CardList from "./CardList";
-import AddCardList from "./AddCardList"
-import CustomModal from "./CustomModal";
+import "../dashBoard.css";
+import CardList from "../CardList";
+import AddCardList from "../AddCardList"
+import CustomModal from "../CustomModal";
 import {useState, useCallback} from 'react';
 
 const CardListGroup = ({cardLists,deleteCardListFunction})=>{

@@ -1,6 +1,6 @@
 import { connect } from "react-redux"
-import { deleteCardList } from "../reducer/actions/dashboard"
-import CardListGroup from "./CardListGroup"
+import { deleteCardList } from "../../reducer/actions/dashboard"
+import CardListGroup from "./index"
 
 const mapStateToCardListGroupProps = state=>({
     cardLists: state.dashBoard.cardLists

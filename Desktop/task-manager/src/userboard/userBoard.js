@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from '../header/HeaderContainer';
+import Header from '../header/Header/Header';
 import "./userBoard.css";
 import UserCardGroup from "./UserCardGroup"
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import "./dashBoard.css";
+import "../dashBoard.css";
 import {useCallback} from 'react';
 import {useState} from 'react';
 import { Input } from "baseui/input";

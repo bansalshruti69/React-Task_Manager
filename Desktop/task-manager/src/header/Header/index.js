@@ -1,7 +1,7 @@
 import React from 'react';
-import './header.css';
+import '../header.css';
 import {useCallback} from 'react';
-import { DASHBOARD, USERBOARD } from '../reducer/actions/header';
+import { DASHBOARD, USERBOARD } from '../../reducer/actions/header';
 
 const Header = ({currState, handleClick})=>{
 

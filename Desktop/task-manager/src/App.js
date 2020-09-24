@@ -4,12 +4,10 @@ import DashBoard from './dashboard/DashBoard.js';
 import {Client as Styletron} from 'styletron-engine-atomic';
 import {Provider as StyletronProvider} from 'styletron-react';
 import {LightTheme, BaseProvider} from 'baseui';
-import { connect } from 'react-redux'
 import { DASHBOARD } from './reducer/actions/header.js';
 
-let App = ({page})=>{
+const App = ({page})=>{
   const engine = new Styletron();
-
   return (
     <StyletronProvider value={engine}>
       <BaseProvider theme={LightTheme}>
@@ -18,14 +16,5 @@ let App = ({page})=>{
     </StyletronProvider>
   )
 }
-
-const mapStateToAppProps = state=>(
-  {page: state.page}
-)
-
-
-App = connect(
-  mapStateToAppProps
-)(App);
 
 export default App;
